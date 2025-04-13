@@ -1,9 +1,12 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Control the progress bar during initial load
+    simulateProgress();
+    
     // Initial page loading animation
     setTimeout(function() {
         document.querySelector('.page-transition').classList.add('loaded');
-    }, 1500); // Show loading animation for 1.5 seconds
+    }, 3000); // Show loading animation for 3 seconds to see progress bar
 
     // Initialize Intersection Observer for fade-in elements
     initFadeInObserver();
@@ -14,6 +17,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhance modal animations
     enhanceModalAnimations();
 });
+
+// Function to simulate progress for demo purposes
+function simulateProgress() {
+    const progressBar = document.querySelector('.progress-bar');
+    if (!progressBar) return;
+    
+    // Reset progress
+    progressBar.style.animation = 'none';
+    progressBar.offsetHeight; // Trigger reflow
+    progressBar.style.animation = 'progress-animation 3s ease-in-out forwards';
+}
 
 // Function to handle fade-in animations using Intersection Observer
 function initFadeInObserver() {
@@ -77,6 +91,9 @@ function initPageNavigation() {
             const pageTransition = document.querySelector('.page-transition');
             pageTransition.classList.remove('loaded');
             
+            // Reset and start progress bar
+            simulateProgress();
+            
             // Simulate page load (in a real multi-page app, this would navigate to a new page)
             setTimeout(function() {
                 // In a real app, you would change content here
@@ -90,7 +107,7 @@ function initPageNavigation() {
                 
                 // Trigger animation of elements again
                 resetAnimations();
-            }, 800);
+            }, 2500); // Extended to show progress bar
         });
     });
 }
