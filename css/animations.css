@@ -1,0 +1,186 @@
+/* Page Transition Animations */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    z-index: 9999;
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.page-transition.loaded {
+    transform: translateY(-100%);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid #2d2d2d;
+    border-top: 5px solid #ff4500;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: #ff4500;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* Loading dots animation */
+.loading-dot {
+    display: inline-block;
+    animation: pulse 0.6s infinite;
+    font-size: 24px;
+    line-height: 10px;
+    font-weight: bold;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Section Fade-In Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Game Card Hover Animation Enhancement */
+.game-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease;
+}
+
+/* Staggered Animation Delays */
+.stagger-delay-1 { transition-delay: 0.1s; }
+.stagger-delay-2 { transition-delay: 0.2s; }
+.stagger-delay-3 { transition-delay: 0.3s; }
+.stagger-delay-4 { transition-delay: 0.4s; }
+.stagger-delay-5 { transition-delay: 0.5s; }
+.stagger-delay-6 { transition-delay: 0.6s; }
+
+/* Page Navigation Transition */
+.page-content {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.page-content.transitioning {
+    opacity: 0;
+}
+
+/* Button Hover Animation Enhancement */
+.cta-button, .play-btn, .trailer-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:after, .play-btn:after, .trailer-btn:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.cta-button:hover:after, .play-btn:hover:after, .trailer-btn:hover:after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+/* Nav Menu Item Animation */
+nav ul li a {
+    position: relative;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ff4500;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::before {
+    width: 100%;
+}
+
+/* Modal Animation */
+.modal {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.visible {
+    opacity: 1;
+}
+
+.modal-content {
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.modal.visible .modal-content {
+    transform: scale(1);
+}
+
+/* Search Results Animation */
+@keyframes highlight {
+    0% { background-color: rgba(255, 69, 0, 0.2); }
+    100% { background-color: transparent; }
+}
+
+.search-highlight {
+    animation: highlight 1.5s ease-out;
+}

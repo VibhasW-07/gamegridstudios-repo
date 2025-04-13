@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GamerX Studios - The Ultimate Gaming Experience</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
     <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
 </head>
 <body>
+    <!-- Page Transition Overlay -->
+    <div class="page-transition">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">LOADING GAME UNIVERSE</div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="page-content">
+    
     <!-- Header -->
     <header>
         <div class="logo">
@@ -20,17 +30,17 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Games</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="active" data-page="home">Home</a></li>
+                <li><a href="#" data-page="games">Games</a></li>
+                <li><a href="#" data-page="news">News</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section - GTA 6 -->
-    <section class="hero">
+    <section class="hero fade-in">
         <div class="hero-content">
             <h1>GTA 6</h1>
             <h2>Coming Soon 2025</h2>
@@ -40,11 +50,11 @@
     </section>
 
     <!-- Featured Games Section -->
-    <section class="featured-games">
+    <section class="featured-games fade-in">
         <h2>Featured Games</h2>
         <div class="games-grid">
             <!-- Game Card 1 -->
-            <div class="game-card">
+            <div class="game-card fade-in stagger-delay-1">
                 <img src="https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1437763071.jpg" alt="GTA 5">
                 <h3>Grand Theft Auto V</h3>
                 <div class="game-buttons">
@@ -54,7 +64,7 @@
             </div>
             
             <!-- Game Card 2 -->
-            <div class="game-card">
+            <div class="game-card fade-in stagger-delay-2">
                 <img src="https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/449BBgnc3RhIXBMPBfJPGv/2f1f1de33f0767a11a5714270a1a0e74/fc-5-game_meta_image.jpg" alt="Far Cry 5">
                 <h3>Far Cry 5</h3>
                 <div class="game-buttons">
@@ -64,7 +74,7 @@
             </div>
             
             <!-- Game Card 3 -->
-            <div class="game-card">
+            <div class="game-card fade-in stagger-delay-3">
                 <img src="https://cdn1.epicgames.com/offer/4bc43145bb8245a5b5cc9bd949e7f3fe/EGS_GOGCOMRedDeadRedemption2_RockstarGames_S1_2560x1440-79f4cd540680c71fd9e203e0d7e3343b" alt="Red Dead Redemption 2">
                 <h3>Red Dead Redemption 2</h3>
                 <div class="game-buttons">
@@ -74,7 +84,7 @@
             </div>
             
             <!-- Game Card 4 -->
-            <div class="game-card">
+            <div class="game-card fade-in stagger-delay-4">
                 <img src="https://cdn-products.eneba.com/resized-products/JldpI6XIW0CtD-WxqNFmC9bEIHDTRJp0T5lrVGXa0XU_350x200_1x-0.jpeg" alt="Valorant">
                 <h3>Valorant</h3>
                 <div class="game-buttons">
@@ -84,7 +94,7 @@
             </div>
             
             <!-- Game Card 5 -->
-            <div class="game-card">
+            <div class="game-card fade-in stagger-delay-5">
                 <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg" alt="Cyberpunk 2077">
                 <h3>Cyberpunk 2077</h3>
                 <div class="game-buttons">
@@ -94,7 +104,7 @@
             </div>
             
             <!-- Game Card 6 -->
-            <div class="game-card">
+            <div class="game-card fade-in stagger-delay-6">
                 <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co5vjq.png" alt="Fortnite">
                 <h3>Fortnite</h3>
                 <div class="game-buttons">
@@ -146,8 +156,11 @@
             </div>
         </div>
     </div>
+    
+    </div> <!-- End of page-content -->
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
+    <script src="js/animations.js"></script>
 </body>
 </html>

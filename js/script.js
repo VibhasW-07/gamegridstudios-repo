@@ -47,9 +47,22 @@ document.addEventListener('DOMContentLoaded', function() {
     allPlayBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const gameName = this.closest('.game-card').querySelector('h3').textContent;
-            alert(`Playing ${gameName}... This would launch the game if this was a real gaming platform.`);
+            
+            // Show loading animation before launching
+            showMiniLoader(this);
+            
+            setTimeout(() => {
+                alert(`Playing ${gameName}... This would launch the game if this was a real gaming platform.`);
+                // Reset button
+                this.innerHTML = 'Play Now';
+            }, 1000);
         });
     });
+    
+    // Add scroll-triggered animations for sections
+    window.addEventListener('scroll', checkScrollPosition);
+    // Trigger once on load to animate elements already in view
+    checkScrollPosition();
 });
 
 // Functions
@@ -87,19 +100,26 @@ function openTrailer(url) {
 }
 
 function closeTrailer() {
-    // Hide modal
-    modal.style.display = 'none';
+    // Remove visible class first for animation
+    modal.classList.remove('visible');
     
-    // Stop video playback
-    trailerVideo.src = '';
-    
-    // Re-enable scrolling
-    document.body.style.overflow = 'auto';
+    // Then hide the modal after animation completes
+    setTimeout(() => {
+        // Hide modal
+        modal.style.display = 'none';
+        
+        // Stop video playback
+        trailerVideo.src = '';
+        
+        // Re-enable scrolling
+        document.body.style.overflow = 'auto';
+    }, 300);
 }
 
 // Create company logo SVG dynamically if not present
 document.addEventListener('DOMContentLoaded', function() {
-    if (!document.querySelector('.logo img').complete || document.querySelector('.logo img').naturalHeight === 0) {
+    const logoImg = document.querySelector('.logo img');
+    if (logoImg && (!logoImg.complete || logoImg.naturalHeight === 0)) {
         // Create a default logo if the SVG is not loading
         createDefaultLogo();
     }
@@ -136,7 +156,7 @@ function createDefaultLogo() {
     svg.appendChild(text);
     
     // Replace img with SVG
-    if (logoImg.parentNode) {
+    if (logoImg && logoImg.parentNode) {
         logoContainer.replaceChild(svg, logoImg);
     }
 }
@@ -145,4 +165,33 @@ function createDefaultLogo() {
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
+}
+
+// Check scroll position and animate elements in view
+function checkScrollPosition() {
+    const fadeElements = document.querySelectorAll('.fade-in:not(.visible)');
+    
+    fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
+        
+        if (isVisible) {
+            element.classList.add('visible');
+        }
+    });
+}
+
+// Show mini loading animation in buttons
+function showMiniLoader(button) {
+    const originalText = button.textContent;
+    button.innerHTML = '<span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>';
+    
+    // Set animation for dots
+    const dots = button.querySelectorAll('.loading-dot');
+    dots.forEach((dot, index) => {
+        dot.style.animation = `pulse 0.6s ${index * 0.2}s infinite`;
+    });
+    
+    return originalText;
 }
