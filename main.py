@@ -1,15 +1,22 @@
-from flask import Flask, render_template, send_from_directory
-import os
+"""
+This is just a static file server to view the HTML files.
+No server-side processing is happening - this only serves the files.
+"""
 
-app = Flask(__name__, static_folder='.', template_folder='.')
+from flask import Flask, send_from_directory, redirect
+
+app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory('.', 'index.html')
 
 @app.route('/<path:path>')
-def serve_static(path):
-    return send_from_directory('.', path)
+def send_static(path):
+    try:
+        return send_from_directory('.', path)
+    except:
+        return redirect('/')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
