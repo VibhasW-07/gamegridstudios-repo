@@ -1,0 +1,860 @@
+/* Base Styles and Variables */
+:root {
+    --primary-color: #ff3e3e;
+    --secondary-color: #072142;
+    --accent-color: #00ccff;
+    --bg-color: #0e0e10;
+    --bg-color-light: #1a1a1c;
+    --text-color: #ffffff;
+    --text-color-muted: #b3b3b3;
+    --border-color: #2a2a2a;
+    --card-bg: #1f1f23;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --header-font: 'Orbitron', sans-serif;
+    --body-font: 'Montserrat', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: var(--body-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--header-font);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header and Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo svg {
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.search-container {
+    position: relative;
+    max-width: 400px;
+    width: 100%;
+    margin: 0 20px;
+}
+
+#search-bar {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border-radius: 25px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+#search-bar:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.search-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-speed) ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    padding: 0 5%;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-text h2 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #ffffff, #ff3e3e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.hero-text button {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trailer-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.trailer-btn i {
+    margin-right: 8px;
+}
+
+.trailer-btn:hover {
+    background-color: #ff2525;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 62, 62, 0.4);
+}
+
+.preorder-btn {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 2px solid var(--text-color);
+}
+
+.preorder-btn:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Featured Games Section */
+.featured-games {
+    padding: 80px 5%;
+    background-color: var(--bg-color);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 50px;
+    height: 4px;
+    background-color: var(--primary-color);
+}
+
+.view-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.view-toggle button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-color-muted);
+    transition: color 0.3s ease;
+}
+
+.view-toggle button.active,
+.view-toggle button:hover {
+    color: var(--primary-color);
+}
+
+.games-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    transition: all 0.5s ease;
+}
+
+.games-container.list-view {
+    grid-template-columns: 1fr;
+}
+
+.game-card {
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.games-container.list-view .game-card {
+    display: flex;
+    align-items: center;
+}
+
+.games-container.list-view .game-img {
+    width: 30%;
+    min-width: 30%;
+}
+
+.games-container.list-view .game-info {
+    padding: 20px;
+}
+
+.game-img {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.game-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-img img {
+    transform: scale(1.1);
+}
+
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover .game-overlay {
+    opacity: 1;
+}
+
+.game-overlay button {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 5px;
+    border: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.game-overlay .trailer-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.game-overlay .trailer-btn:hover {
+    background-color: #ff2525;
+}
+
+.game-overlay .play-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.game-overlay .play-btn:hover {
+    background-color: #00b8e6;
+}
+
+.game-overlay button i {
+    margin-right: 5px;
+}
+
+.game-info {
+    padding: 15px;
+}
+
+.game-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-color-muted);
+}
+
+.game-rating {
+    color: var(--accent-color);
+}
+
+.game-rating i {
+    color: gold;
+    margin-right: 3px;
+}
+
+/* Newsletter Section */
+.newsletter {
+    padding: 80px 5%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.newsletter p {
+    margin-bottom: 30px;
+    color: var(--text-color-muted);
+}
+
+.newsletter form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletter input {
+    flex: 1;
+    padding: 15px;
+    border-radius: 50px 0 0 50px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.newsletter input:focus {
+    outline: none;
+}
+
+.newsletter button {
+    padding: 0 30px;
+    border-radius: 0 50px 50px 0;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter button:hover {
+    background-color: #ff2525;
+}
+
+/* Footer */
+footer {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-muted);
+    padding: 60px 5% 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footer-logo svg {
+    margin-right: 10px;
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-column h4 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-column h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: var(--text-color-muted);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+}
+
+/* Trailer Modal */
+.trailer-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    overflow: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    animation: modalOpen 0.4s ease-out;
+}
+
+@keyframes modalOpen {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: var(--text-color);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--primary-color);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero-text h2 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .hero-text h2 {
+        font-size: 3rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.3rem;
+    }
+    
+    .search-container {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background-color: var(--bg-color);
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        overflow: hidden;
+        transition: height 0.3s ease;
+        z-index: 999;
+    }
+    
+    .nav-links.active {
+        height: calc(100vh - 70px);
+        padding: 30px 0;
+    }
+    
+    .nav-links li {
+        margin: 15px 0;
+    }
+    
+    .search-container {
+        order: -1;
+        max-width: none;
+        width: 100%;
+        margin: 15px 0;
+        display: none;
+    }
+    
+    .search-container.mobile-active {
+        display: block;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+    
+    .hero-text button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-links {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    nav {
+        padding: 15px 4%;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero {
+        padding: 0 4%;
+    }
+    
+    .hero-text h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-text button {
+        margin-bottom: 10px;
+    }
+    
+    .featured-games {
+        padding: 60px 4%;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .games-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .games-container.list-view .game-card {
+        flex-direction: column;
+    }
+    
+    .games-container.list-view .game-img {
+        width: 100%;
+    }
+    
+    .newsletter {
+        padding: 60px 4%;
+    }
+    
+    .newsletter form {
+        flex-direction: column;
+    }
+    
+    .newsletter input {
+        border-radius: 50px;
+        margin-bottom: 10px;
+    }
+    
+    .newsletter button {
+        border-radius: 50px;
+        padding: 15px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-column {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+}
