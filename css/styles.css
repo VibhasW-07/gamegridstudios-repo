@@ -112,7 +112,7 @@ nav ul li a.active::after {
 /* Hero Section */
 .hero {
     height: 80vh;
-    background-image: url('https://media.rockstargames.com/rockstargames/img/global/news/upload/actual_1450261652.jpg');
+    background-image: url('../attached_assets/image_1744541961017.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
