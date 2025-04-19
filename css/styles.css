@@ -114,7 +114,7 @@ nav ul li a.active::after {
 /* Hero Section */
 .hero {
     height: 80vh;
-    background-image: url('../attached_assets/image_1744541961017.png');
+    background-image: url('../attached_assets/global.avif');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
